@@ -197,11 +197,11 @@ class UNet(nn.Module):
                 merge_mode=merge_mode)
             self.up_convs.append(up_conv)
 
-        self.conv_final = conv1x1(outs, self.num_classes)
-
         # add the list of modules to current module
         self.down_convs = nn.ModuleList(self.down_convs)
         self.up_convs = nn.ModuleList(self.up_convs)
+
+        self.conv_final = conv1x1(outs, self.num_classes)
 
         self.reset_params()
 
